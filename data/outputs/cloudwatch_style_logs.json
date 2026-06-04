@@ -1,0 +1,602 @@
+[
+  {
+    "timestamp": "2026-06-04T16:00:00.000Z",
+    "request_id": "req-1-0",
+    "route": "/boards",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 55,
+    "message": "Simulated client 1 exercised /boards."
+  },
+  {
+    "timestamp": "2026-06-03T16:01:00.000Z",
+    "request_id": "req-1-1",
+    "route": "/lists",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 78,
+    "message": "Simulated client 1 exercised /lists."
+  },
+  {
+    "timestamp": "2026-06-02T16:02:00.000Z",
+    "request_id": "req-1-2",
+    "route": "/tasks",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 101,
+    "message": "Simulated client 1 exercised /tasks."
+  },
+  {
+    "timestamp": "2026-06-04T16:03:00.000Z",
+    "request_id": "req-1-3",
+    "route": "/tasks/move",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 124,
+    "message": "Simulated client 1 exercised /tasks/move."
+  },
+  {
+    "timestamp": "2026-06-03T16:04:00.000Z",
+    "request_id": "req-1-4",
+    "route": "/comments",
+    "method": "POST",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 147,
+    "message": "Simulated client 1 exercised /comments."
+  },
+  {
+    "timestamp": "2026-06-02T16:05:00.000Z",
+    "request_id": "req-1-5",
+    "route": "/search",
+    "method": "GET",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 170,
+    "message": "Simulated client 1 exercised /search."
+  },
+  {
+    "timestamp": "2026-06-04T16:06:00.000Z",
+    "request_id": "req-1-6",
+    "route": "/tasks/duplicates",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 193,
+    "message": "Simulated client 1 exercised /tasks/duplicates."
+  },
+  {
+    "timestamp": "2026-06-03T16:07:00.000Z",
+    "request_id": "req-1-7",
+    "route": "/tasks/related",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 216,
+    "message": "Simulated client 1 exercised /tasks/related."
+  },
+  {
+    "timestamp": "2026-06-02T16:08:00.000Z",
+    "request_id": "req-1-8",
+    "route": "/tasks/tags",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 59,
+    "message": "Simulated client 1 exercised /tasks/tags."
+  },
+  {
+    "timestamp": "2026-06-04T16:09:00.000Z",
+    "request_id": "req-1-9",
+    "route": "/review-metadata",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 82,
+    "message": "Simulated client 1 exercised /review-metadata."
+  },
+  {
+    "timestamp": "2026-06-03T16:10:00.000Z",
+    "request_id": "req-1-10",
+    "route": "/metrics",
+    "method": "GET",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 105,
+    "message": "Simulated client 1 exercised /metrics."
+  },
+  {
+    "timestamp": "2026-06-02T16:11:00.000Z",
+    "request_id": "req-1-11",
+    "route": "/workspaces",
+    "method": "POST",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 128,
+    "message": "Simulated client 1 exercised /workspaces."
+  },
+  {
+    "timestamp": "2026-06-04T16:00:00.000Z",
+    "request_id": "req-2-0",
+    "route": "/lists",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 72,
+    "message": "Simulated client 2 exercised /lists."
+  },
+  {
+    "timestamp": "2026-06-03T16:02:00.000Z",
+    "request_id": "req-2-1",
+    "route": "/tasks",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 95,
+    "message": "Simulated client 2 exercised /tasks."
+  },
+  {
+    "timestamp": "2026-06-02T16:04:00.000Z",
+    "request_id": "req-2-2",
+    "route": "/tasks/move",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 118,
+    "message": "Simulated client 2 exercised /tasks/move."
+  },
+  {
+    "timestamp": "2026-06-04T16:06:00.000Z",
+    "request_id": "req-2-3",
+    "route": "/comments",
+    "method": "POST",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 141,
+    "message": "Simulated client 2 exercised /comments."
+  },
+  {
+    "timestamp": "2026-06-03T16:08:00.000Z",
+    "request_id": "req-2-4",
+    "route": "/search",
+    "method": "GET",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 164,
+    "message": "Simulated client 2 exercised /search."
+  },
+  {
+    "timestamp": "2026-06-02T16:10:00.000Z",
+    "request_id": "req-2-5",
+    "route": "/tasks/duplicates",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 187,
+    "message": "Simulated client 2 exercised /tasks/duplicates."
+  },
+  {
+    "timestamp": "2026-06-04T16:12:00.000Z",
+    "request_id": "req-2-6",
+    "route": "/tasks/related",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 210,
+    "message": "Simulated client 2 exercised /tasks/related."
+  },
+  {
+    "timestamp": "2026-06-03T16:14:00.000Z",
+    "request_id": "req-2-7",
+    "route": "/tasks/tags",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 53,
+    "message": "Simulated client 2 exercised /tasks/tags."
+  },
+  {
+    "timestamp": "2026-06-02T16:16:00.000Z",
+    "request_id": "req-2-8",
+    "route": "/review-metadata",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 76,
+    "message": "Simulated client 2 exercised /review-metadata."
+  },
+  {
+    "timestamp": "2026-06-04T16:18:00.000Z",
+    "request_id": "req-2-9",
+    "route": "/metrics",
+    "method": "GET",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 99,
+    "message": "Simulated client 2 exercised /metrics."
+  },
+  {
+    "timestamp": "2026-06-03T16:20:00.000Z",
+    "request_id": "req-2-10",
+    "route": "/workspaces",
+    "method": "POST",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 122,
+    "message": "Simulated client 2 exercised /workspaces."
+  },
+  {
+    "timestamp": "2026-06-02T16:22:00.000Z",
+    "request_id": "req-2-11",
+    "route": "/boards",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 145,
+    "message": "Simulated client 2 exercised /boards."
+  },
+  {
+    "timestamp": "2026-06-04T16:00:00.000Z",
+    "request_id": "req-3-0",
+    "route": "/tasks",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 89,
+    "message": "Simulated client 3 exercised /tasks."
+  },
+  {
+    "timestamp": "2026-06-03T16:03:00.000Z",
+    "request_id": "req-3-1",
+    "route": "/tasks/move",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 112,
+    "message": "Simulated client 3 exercised /tasks/move."
+  },
+  {
+    "timestamp": "2026-06-02T16:06:00.000Z",
+    "request_id": "req-3-2",
+    "route": "/comments",
+    "method": "POST",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 135,
+    "message": "Simulated client 3 exercised /comments."
+  },
+  {
+    "timestamp": "2026-06-04T16:09:00.000Z",
+    "request_id": "req-3-3",
+    "route": "/search",
+    "method": "GET",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 158,
+    "message": "Simulated client 3 exercised /search."
+  },
+  {
+    "timestamp": "2026-06-03T16:12:00.000Z",
+    "request_id": "req-3-4",
+    "route": "/tasks/duplicates",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 181,
+    "message": "Simulated client 3 exercised /tasks/duplicates."
+  },
+  {
+    "timestamp": "2026-06-02T16:15:00.000Z",
+    "request_id": "req-3-5",
+    "route": "/tasks/related",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 204,
+    "message": "Simulated client 3 exercised /tasks/related."
+  },
+  {
+    "timestamp": "2026-06-04T16:18:00.000Z",
+    "request_id": "req-3-6",
+    "route": "/tasks/tags",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 47,
+    "message": "Simulated client 3 exercised /tasks/tags."
+  },
+  {
+    "timestamp": "2026-06-03T16:21:00.000Z",
+    "request_id": "req-3-7",
+    "route": "/review-metadata",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 70,
+    "message": "Simulated client 3 exercised /review-metadata."
+  },
+  {
+    "timestamp": "2026-06-02T16:24:00.000Z",
+    "request_id": "req-3-8",
+    "route": "/metrics",
+    "method": "GET",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 93,
+    "message": "Simulated client 3 exercised /metrics."
+  },
+  {
+    "timestamp": "2026-06-04T16:27:00.000Z",
+    "request_id": "req-3-9",
+    "route": "/workspaces",
+    "method": "POST",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 116,
+    "message": "Simulated client 3 exercised /workspaces."
+  },
+  {
+    "timestamp": "2026-06-03T16:30:00.000Z",
+    "request_id": "req-3-10",
+    "route": "/boards",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 139,
+    "message": "Simulated client 3 exercised /boards."
+  },
+  {
+    "timestamp": "2026-06-02T16:33:00.000Z",
+    "request_id": "req-3-11",
+    "route": "/lists",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 162,
+    "message": "Simulated client 3 exercised /lists."
+  },
+  {
+    "timestamp": "2026-06-04T16:00:00.000Z",
+    "request_id": "req-4-0",
+    "route": "/tasks/move",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 106,
+    "message": "Simulated client 4 exercised /tasks/move."
+  },
+  {
+    "timestamp": "2026-06-03T16:04:00.000Z",
+    "request_id": "req-4-1",
+    "route": "/comments",
+    "method": "POST",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 129,
+    "message": "Simulated client 4 exercised /comments."
+  },
+  {
+    "timestamp": "2026-06-02T16:08:00.000Z",
+    "request_id": "req-4-2",
+    "route": "/search",
+    "method": "GET",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 152,
+    "message": "Simulated client 4 exercised /search."
+  },
+  {
+    "timestamp": "2026-06-04T16:12:00.000Z",
+    "request_id": "req-4-3",
+    "route": "/tasks/duplicates",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 175,
+    "message": "Simulated client 4 exercised /tasks/duplicates."
+  },
+  {
+    "timestamp": "2026-06-03T16:16:00.000Z",
+    "request_id": "req-4-4",
+    "route": "/tasks/related",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 198,
+    "message": "Simulated client 4 exercised /tasks/related."
+  },
+  {
+    "timestamp": "2026-06-02T16:20:00.000Z",
+    "request_id": "req-4-5",
+    "route": "/tasks/tags",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 41,
+    "message": "Simulated client 4 exercised /tasks/tags."
+  },
+  {
+    "timestamp": "2026-06-04T16:24:00.000Z",
+    "request_id": "req-4-6",
+    "route": "/review-metadata",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 64,
+    "message": "Simulated client 4 exercised /review-metadata."
+  },
+  {
+    "timestamp": "2026-06-03T16:28:00.000Z",
+    "request_id": "req-4-7",
+    "route": "/metrics",
+    "method": "GET",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 87,
+    "message": "Simulated client 4 exercised /metrics."
+  },
+  {
+    "timestamp": "2026-06-02T16:32:00.000Z",
+    "request_id": "req-4-8",
+    "route": "/workspaces",
+    "method": "POST",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 110,
+    "message": "Simulated client 4 exercised /workspaces."
+  },
+  {
+    "timestamp": "2026-06-04T16:36:00.000Z",
+    "request_id": "req-4-9",
+    "route": "/boards",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 133,
+    "message": "Simulated client 4 exercised /boards."
+  },
+  {
+    "timestamp": "2026-06-03T16:40:00.000Z",
+    "request_id": "req-4-10",
+    "route": "/lists",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 156,
+    "message": "Simulated client 4 exercised /lists."
+  },
+  {
+    "timestamp": "2026-06-02T16:44:00.000Z",
+    "request_id": "req-4-11",
+    "route": "/tasks",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 179,
+    "message": "Simulated client 4 exercised /tasks."
+  },
+  {
+    "timestamp": "2026-06-04T16:00:00.000Z",
+    "request_id": "req-5-0",
+    "route": "/comments",
+    "method": "POST",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 123,
+    "message": "Simulated client 5 exercised /comments."
+  },
+  {
+    "timestamp": "2026-06-03T16:05:00.000Z",
+    "request_id": "req-5-1",
+    "route": "/search",
+    "method": "GET",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 146,
+    "message": "Simulated client 5 exercised /search."
+  },
+  {
+    "timestamp": "2026-06-02T16:10:00.000Z",
+    "request_id": "req-5-2",
+    "route": "/tasks/duplicates",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 169,
+    "message": "Simulated client 5 exercised /tasks/duplicates."
+  },
+  {
+    "timestamp": "2026-06-04T16:15:00.000Z",
+    "request_id": "req-5-3",
+    "route": "/tasks/related",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 192,
+    "message": "Simulated client 5 exercised /tasks/related."
+  },
+  {
+    "timestamp": "2026-06-03T16:20:00.000Z",
+    "request_id": "req-5-4",
+    "route": "/tasks/tags",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 215,
+    "message": "Simulated client 5 exercised /tasks/tags."
+  },
+  {
+    "timestamp": "2026-06-02T16:25:00.000Z",
+    "request_id": "req-5-5",
+    "route": "/review-metadata",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 58,
+    "message": "Simulated client 5 exercised /review-metadata."
+  },
+  {
+    "timestamp": "2026-06-04T16:30:00.000Z",
+    "request_id": "req-5-6",
+    "route": "/metrics",
+    "method": "GET",
+    "user_id": "user-006",
+    "status_code": 200,
+    "latency_ms": 81,
+    "message": "Simulated client 5 exercised /metrics."
+  },
+  {
+    "timestamp": "2026-06-03T16:35:00.000Z",
+    "request_id": "req-5-7",
+    "route": "/workspaces",
+    "method": "POST",
+    "user_id": "user-001",
+    "status_code": 200,
+    "latency_ms": 104,
+    "message": "Simulated client 5 exercised /workspaces."
+  },
+  {
+    "timestamp": "2026-06-02T16:40:00.000Z",
+    "request_id": "req-5-8",
+    "route": "/boards",
+    "method": "POST",
+    "user_id": "user-002",
+    "status_code": 200,
+    "latency_ms": 127,
+    "message": "Simulated client 5 exercised /boards."
+  },
+  {
+    "timestamp": "2026-06-04T16:45:00.000Z",
+    "request_id": "req-5-9",
+    "route": "/lists",
+    "method": "POST",
+    "user_id": "user-003",
+    "status_code": 200,
+    "latency_ms": 150,
+    "message": "Simulated client 5 exercised /lists."
+  },
+  {
+    "timestamp": "2026-06-03T16:50:00.000Z",
+    "request_id": "req-5-10",
+    "route": "/tasks",
+    "method": "POST",
+    "user_id": "user-004",
+    "status_code": 200,
+    "latency_ms": 173,
+    "message": "Simulated client 5 exercised /tasks."
+  },
+  {
+    "timestamp": "2026-06-02T16:55:00.000Z",
+    "request_id": "req-5-11",
+    "route": "/tasks/move",
+    "method": "POST",
+    "user_id": "user-005",
+    "status_code": 200,
+    "latency_ms": 196,
+    "message": "Simulated client 5 exercised /tasks/move."
+  }
+]

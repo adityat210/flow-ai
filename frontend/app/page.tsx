@@ -31,6 +31,9 @@ type BoardItem = {
   role?: string;
   relevanceScore?: number;
   similarity?: number;
+  tags?: string[];
+  reviewStatus?: string;
+  relatedTaskIds?: string[];
 };
 
 type CommentItem = {
@@ -46,6 +49,219 @@ const columns = [
   { id: "in-progress", label: "In Progress" },
   { id: "done", label: "Done" },
 ];
+
+const demoTasks: BoardItem[] = [
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-001",
+    boardId: "demo-board",
+    taskId: "demo-001",
+    title: "Plan physics lab milestone checklist",
+    description:
+      "Break the lab writeup into data cleaning, graphing, uncertainty notes, and final review.",
+    columnId: "todo",
+    status: "todo",
+    position: 1,
+    tags: ["testing", "review", "workflow"],
+    reviewStatus: "needs-review",
+    relatedTaskIds: ["demo-006", "demo-009"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-002",
+    boardId: "demo-board",
+    taskId: "demo-002",
+    title: "Build AI duplicate-detection route",
+    description:
+      "Use local semantic scoring to flag repeated task requests before they clutter the board.",
+    columnId: "in-progress",
+    status: "in-progress",
+    position: 2,
+    tags: ["ai-assistance", "api", "backend"],
+    reviewStatus: "in-review",
+    relatedTaskIds: ["demo-003", "demo-007"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-003",
+    boardId: "demo-board",
+    taskId: "demo-003",
+    title: "Surface related assignments across boards",
+    description:
+      "Find similar work across team projects, personal assignments, and goals using semantic retrieval.",
+    columnId: "todo",
+    status: "todo",
+    position: 3,
+    tags: ["ai-assistance", "workflow", "data"],
+    reviewStatus: "ready",
+    relatedTaskIds: ["demo-002", "demo-010"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-004",
+    boardId: "demo-board",
+    taskId: "demo-004",
+    title: "Add CloudWatch-style latency report",
+    description:
+      "Log route, method, user, request id, status code, and latency for each simulated workflow action.",
+    columnId: "done",
+    status: "done",
+    position: 4,
+    tags: ["observability", "backend", "testing"],
+    reviewStatus: "approved",
+    relatedTaskIds: ["demo-008"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-005",
+    boardId: "demo-board",
+    taskId: "demo-005",
+    title: "Polish board UI tag chips",
+    description:
+      "Make smart tags visible on each card so reviewers can inspect the functional demo at a glance.",
+    columnId: "in-progress",
+    status: "in-progress",
+    position: 5,
+    tags: ["frontend", "review", "smart-tags"],
+    reviewStatus: "needs-review",
+    relatedTaskIds: ["demo-011"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-006",
+    boardId: "demo-board",
+    taskId: "demo-006",
+    title: "Finish economics problem set plan",
+    description:
+      "Track readings, chart screenshots, written answers, and final submission checklist.",
+    columnId: "todo",
+    status: "todo",
+    position: 6,
+    tags: ["assignment", "workflow", "blocked"],
+    reviewStatus: "blocked",
+    relatedTaskIds: ["demo-001"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-007",
+    boardId: "demo-board",
+    taskId: "demo-007",
+    title: "Detect repeated lab writeup tasks",
+    description:
+      "Compare similar titles and descriptions so duplicate schoolwork tasks are grouped together.",
+    columnId: "done",
+    status: "done",
+    position: 7,
+    tags: ["duplicate-detection", "ai-assistance", "testing"],
+    reviewStatus: "approved",
+    relatedTaskIds: ["demo-002", "demo-001"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-008",
+    boardId: "demo-board",
+    taskId: "demo-008",
+    title: "Simulate five concurrent client sessions",
+    description:
+      "Exercise task movement, comments, search, duplicate detection, smart tags, and review state.",
+    columnId: "done",
+    status: "done",
+    position: 8,
+    tags: ["integration", "testing", "observability"],
+    reviewStatus: "approved",
+    relatedTaskIds: ["demo-004"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-009",
+    boardId: "demo-board",
+    taskId: "demo-009",
+    title: "Review team project responsibilities",
+    description:
+      "Separate owner, reviewer, and blocked work so shared goals stay visible before meetings.",
+    columnId: "in-progress",
+    status: "in-progress",
+    position: 9,
+    tags: ["teamwork", "review", "workflow"],
+    reviewStatus: "in-review",
+    relatedTaskIds: ["demo-001", "demo-003"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-010",
+    boardId: "demo-board",
+    taskId: "demo-010",
+    title: "Document DynamoDB PK/SK examples",
+    description:
+      "Explain workspace-to-board traversal, sorted task retrieval, review metadata, and tag lookup.",
+    columnId: "todo",
+    status: "todo",
+    position: 10,
+    tags: ["data", "backend", "documentation"],
+    reviewStatus: "ready",
+    relatedTaskIds: ["demo-003"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-011",
+    boardId: "demo-board",
+    taskId: "demo-011",
+    title: "Create README proof screenshots",
+    description:
+      "Capture the populated FlowIntel UI and deterministic metrics output for project documentation.",
+    columnId: "done",
+    status: "done",
+    position: 11,
+    tags: ["documentation", "frontend", "review"],
+    reviewStatus: "approved",
+    relatedTaskIds: ["demo-005"],
+  },
+  {
+    PK: "BOARD#demo-board",
+    SK: "TASK#demo-012",
+    boardId: "demo-board",
+    taskId: "demo-012",
+    title: "Prepare goal review for the week",
+    description:
+      "Group personal deadlines, shared project blockers, and follow-up tasks into one planning board.",
+    columnId: "todo",
+    status: "todo",
+    position: 12,
+    tags: ["goals", "workflow", "review"],
+    reviewStatus: "ready",
+    relatedTaskIds: ["demo-009"],
+  },
+];
+
+const demoComments: Record<string, CommentItem[]> = {
+  "demo-001": [
+    {
+      commentId: "comment-demo-001",
+      taskId: "demo-001",
+      userId: "demo-user",
+      body: "Split the lab work before Thursday so the final review is not rushed.",
+      createdAt: "2026-06-04T16:00:00.000Z",
+    },
+  ],
+  "demo-002": [
+    {
+      commentId: "comment-demo-002",
+      taskId: "demo-002",
+      userId: "demo-user",
+      body: "Duplicate check should catch differently worded but related work.",
+      createdAt: "2026-06-04T16:05:00.000Z",
+    },
+  ],
+  "demo-009": [
+    {
+      commentId: "comment-demo-009",
+      taskId: "demo-009",
+      userId: "demo-user",
+      body: "Use this before team meetings to see blockers and review ownership.",
+      createdAt: "2026-06-04T16:10:00.000Z",
+    },
+  ],
+};
 
 export default function Home() {
   const [boardId, setBoardId] = useState("");
@@ -270,6 +486,37 @@ export default function Home() {
 
     setAnalyzing(true);
 
+    if (boardId === "demo-board") {
+      const query = taskTitle.toLowerCase();
+      const localTags = [
+        query.includes("assignment") ? "assignment" : "workflow",
+        query.includes("block") ? "blocked" : "review",
+        query.includes("semantic") || query.includes("ai")
+          ? "ai-assistance"
+          : "goals",
+      ];
+      const localSuggestions = demoTasks
+        .map((task) => {
+          const text = `${task.title} ${task.description} ${task.tags?.join(" ")}`.toLowerCase();
+          const overlap = query
+            .split(/\s+/)
+            .filter((term) => term.length > 2 && text.includes(term)).length;
+
+          return {
+            ...task,
+            similarity: Math.min(0.98, 0.35 + overlap * 0.16),
+          };
+        })
+        .filter((task) => (task.similarity || 0) > 0.45)
+        .sort((a, b) => (b.similarity || 0) - (a.similarity || 0))
+        .slice(0, 4);
+
+      setSuggestedTags([...new Set(localTags)]);
+      setAiSuggestions(localSuggestions);
+      setAnalyzing(false);
+      return;
+    }
+
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/analyze`, {
         method: "POST",
@@ -297,6 +544,31 @@ export default function Home() {
   const handleSearch = async () => {
     if (!searchQuery.trim()) return;
 
+    if (boardId === "demo-board") {
+      const query = searchQuery.toLowerCase();
+      const results = demoTasks
+        .map((task) => {
+          const text = `${task.title} ${task.description} ${task.tags?.join(" ")}`;
+          const lowerText = text.toLowerCase();
+          const relevanceScore = query
+            .split(/\s+/)
+            .filter((term) => term.length > 2 && lowerText.includes(term))
+            .length;
+
+          return {
+            ...task,
+            relevanceScore:
+              relevanceScore > 0 ? relevanceScore * 25 : lowerText.includes(query) ? 20 : 0,
+          };
+        })
+        .filter((task) => task.relevanceScore > 0)
+        .sort((a, b) => (b.relevanceScore || 0) - (a.relevanceScore || 0));
+
+      setSearchResults(results);
+      setSearchCacheHit(false);
+      return;
+    }
+
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/search?q=${encodeURIComponent(
@@ -315,6 +587,28 @@ export default function Home() {
 
   const handleCreateTask = async () => {
     if (!boardId || !taskTitle.trim()) return;
+
+    if (boardId === "demo-board") {
+      const newTask: BoardItem = {
+        PK: "BOARD#demo-board",
+        SK: `TASK#demo-${Date.now()}`,
+        boardId: "demo-board",
+        taskId: `demo-${Date.now()}`,
+        title: taskTitle,
+        description: "Locally added demo task for balancing assignments and goals.",
+        columnId: "todo",
+        status: "todo",
+        position: tasks.length + 1,
+        tags: suggestedTags.length > 0 ? suggestedTags : ["workflow", "goals"],
+        reviewStatus: "ready",
+      };
+
+      setBoardItems((prev) => [...prev, newTask]);
+      setTaskTitle("");
+      setAiSuggestions([]);
+      setSuggestedTags([]);
+      return;
+    }
 
     setLoading(true);
 
@@ -335,6 +629,17 @@ export default function Home() {
   const handleMoveTask = async (task: BoardItem, newColumnId: string) => {
     if (!boardId || !task.taskId || !task.title) return;
 
+    if (boardId === "demo-board") {
+      setBoardItems((prev) =>
+        prev.map((item) =>
+          item.taskId === task.taskId
+            ? { ...item, columnId: newColumnId, status: newColumnId }
+            : item
+        )
+      );
+      return;
+    }
+
     setLoading(true);
 
     await updateTask(boardId, task.taskId, {
@@ -354,6 +659,27 @@ export default function Home() {
 
     const commentBody = commentInputs[task.taskId]?.trim();
     if (!commentBody) return;
+
+    if (boardId === "demo-board") {
+      const comment = {
+        commentId: `comment-${Date.now()}`,
+        taskId: task.taskId,
+        userId,
+        body: commentBody,
+        createdAt: new Date().toISOString(),
+      };
+
+      setCommentInputs((prev) => ({
+        ...prev,
+        [task.taskId!]: "",
+      }));
+
+      setCommentsByTask((prev) => ({
+        ...prev,
+        [task.taskId!]: [...(prev[task.taskId!] || []), comment],
+      }));
+      return;
+    }
 
     setLoading(true);
 
@@ -397,6 +723,56 @@ export default function Home() {
     setSearchCacheHit(null);
   };
 
+  const handleLoadDemoBoard = () => {
+    const demoWorkspaceId = "demo-workspace";
+    const demoBoardId = "demo-board";
+    const demoUserId = userId || "demo-user";
+
+    setWorkspaceId(demoWorkspaceId);
+    setBoardId(demoBoardId);
+    setUserId(demoUserId);
+    setMembers([
+      {
+        PK: "WORKSPACE#demo-workspace",
+        SK: "MEMBER#demo-user",
+        userId: demoUserId,
+        role: "owner",
+      },
+      {
+        PK: "WORKSPACE#demo-workspace",
+        SK: "MEMBER#demo-teammate",
+        userId: "demo-teammate",
+        role: "reviewer",
+      },
+    ]);
+    setBoardItems([
+      {
+        PK: "BOARD#demo-board",
+        SK: "METADATA",
+        boardId: demoBoardId,
+        name: "FlowIntel Demo Board",
+      },
+      ...demoTasks,
+    ]);
+    setCommentsByTask(demoComments);
+    setTaskTitle("Add semantic reminder for assignment blockers");
+    setSuggestedTags(["ai-assistance", "workflow", "blocked"]);
+    setAiSuggestions([
+      { ...demoTasks[1], similarity: 0.86 },
+      { ...demoTasks[6], similarity: 0.79 },
+    ]);
+    setSearchQuery("assignment review workflow");
+    setSearchResults(demoTasks.slice(0, 6).map((task, index) => ({
+      ...task,
+      relevanceScore: 100 - index * 9,
+    })));
+    setSearchCacheHit(false);
+
+    localStorage.setItem("tasksync-workspace-id", demoWorkspaceId);
+    localStorage.setItem("tasksync-board-id", demoBoardId);
+    localStorage.setItem("tasksync-user-id", demoUserId);
+  };
+
   const boardMetadata = boardItems.find((item) => item.SK === "METADATA");
 
   const tasks = boardItems.filter((item) => item.SK?.startsWith("TASK#"));
@@ -436,11 +812,11 @@ export default function Home() {
                 fontSize: 12,
               }}
             >
-              TaskSync AI
+              FlowIntel
             </p>
 
             <h1 style={{ margin: "8px 0", fontSize: 42, lineHeight: 1.1 }}>
-              Serverless task management.
+              AI workflow balance for teams, assignments, and goals.
             </h1>
 
             <p
@@ -451,13 +827,28 @@ export default function Home() {
                 maxWidth: 620,
               }}
             >
-              Create boards, add tasks, move work across columns, search work
-              items, analyze duplicate tasks, and comment on activity using AWS
-              Lambda, API Gateway, DynamoDB, Redis, WebSockets, and Cognito.
+              Coordinate shared workspaces, personal assignments, project boards,
+              duplicate detection, related-task discovery, smart tags, comments,
+              and review visibility using an AWS-style serverless architecture.
             </p>
           </div>
 
           <div style={{ display: "flex", gap: 8 }}>
+            <button
+              onClick={handleLoadDemoBoard}
+              style={{
+                border: "1px solid #c7d2fe",
+                background: "#eef2ff",
+                color: "#3730a3",
+                padding: "10px 16px",
+                borderRadius: 10,
+                cursor: "pointer",
+                fontWeight: 700,
+              }}
+            >
+              Load Demo Board
+            </button>
+
             <button
               onClick={handleCreateBoard}
               disabled={loading || !authToken}
@@ -509,7 +900,7 @@ export default function Home() {
           <p style={{ margin: "8px 0 16px", color: "#6b7280", fontSize: 14 }}>
             {authToken
               ? `Signed in as ${authEmail}`
-              : "Create or sign into a Cognito-backed account."}
+              : "Create or sign into a Cognito-backed account, or use local simulation when AWS env vars are absent."}
           </p>
 
           {!authToken ? (
@@ -634,9 +1025,10 @@ export default function Home() {
               boxShadow: "0 10px 30px rgba(15, 23, 42, 0.06)",
             }}
           >
-            <h2 style={{ marginTop: 0 }}>Sign in to access your workspace</h2>
+            <h2 style={{ marginTop: 0 }}>Sign in to access your FlowIntel workspace</h2>
             <p style={{ color: "#6b7280", marginBottom: 0 }}>
-              Create or log into a Cognito account before creating boards and tasks.
+              Create or log into a Cognito-style account before balancing team
+              work, personal assignments, and goals across boards.
             </p>
           </div>
         ) : boardId ? (
@@ -921,12 +1313,66 @@ export default function Home() {
                         <p
                           style={{
                             margin: 0,
-                            color: "#9ca3af",
+                            color: "#6b7280",
                             fontSize: 12,
                           }}
                         >
                           Status: {column.label}
                         </p>
+
+                        {task.description && (
+                          <p
+                            style={{
+                              margin: "8px 0 0",
+                              color: "#4b5563",
+                              fontSize: 12,
+                              lineHeight: 1.4,
+                            }}
+                          >
+                            {task.description}
+                          </p>
+                        )}
+
+                        {(task.tags || []).length > 0 && (
+                          <div
+                            style={{
+                              marginTop: 10,
+                              display: "flex",
+                              flexWrap: "wrap",
+                              gap: 6,
+                            }}
+                          >
+                            {(task.tags || []).map((tag) => (
+                              <span
+                                key={tag}
+                                style={{
+                                  background: "#eef2ff",
+                                  border: "1px solid #c7d2fe",
+                                  color: "#3730a3",
+                                  borderRadius: 999,
+                                  padding: "3px 8px",
+                                  fontSize: 11,
+                                  fontWeight: 700,
+                                }}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+
+                        {task.reviewStatus && (
+                          <p
+                            style={{
+                              margin: "10px 0 0",
+                              color: "#047857",
+                              fontSize: 12,
+                              fontWeight: 700,
+                            }}
+                          >
+                            Review: {task.reviewStatus}
+                          </p>
+                        )}
 
                         <div
                           style={{
@@ -1044,6 +1490,21 @@ export default function Home() {
             <p style={{ color: "#6b7280", marginBottom: 0 }}>
               Create a board to start adding and moving tasks.
             </p>
+            <button
+              onClick={handleLoadDemoBoard}
+              style={{
+                marginTop: 20,
+                border: "none",
+                background: "#4f46e5",
+                color: "white",
+                padding: "12px 16px",
+                borderRadius: 10,
+                cursor: "pointer",
+                fontWeight: 700,
+              }}
+            >
+              Load Demo Board
+            </button>
           </div>
         )}
       </section>

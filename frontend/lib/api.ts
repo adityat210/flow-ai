@@ -44,7 +44,8 @@ export async function updateTask(
     task: {
         title: string;
         description?: string;
-        columnId: string;   
+        columnId: string;
+        status?: string;
         position?: number;
     }
 ) 

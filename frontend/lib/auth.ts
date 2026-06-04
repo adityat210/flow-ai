@@ -5,12 +5,34 @@ import {
   CognitoUserPool,
 } from "amazon-cognito-identity-js";
 
-const userPool = new CognitoUserPool({
-  UserPoolId: process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID!,
-  ClientId: process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID!,
-});
+function hasCognitoConfig() {
+  const userPoolId = process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID;
+  const clientId = process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID;
+  return Boolean(userPoolId && clientId);
+}
+
+function getUserPool() {
+  const userPoolId = process.env.NEXT_PUBLIC_COGNITO_USER_POOL_ID;
+  const clientId = process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID;
+
+  if (!userPoolId || !clientId) {
+    throw new Error("Cognito configuration is missing.");
+  }
+
+  return new CognitoUserPool({
+    UserPoolId: userPoolId,
+    ClientId: clientId,
+  });
+}
 
 export function signUp(email: string, password: string) {
+  if (!hasCognitoConfig()) {
+    return Promise.resolve({
+      userSub: `local-cognito-${email}`,
+      message: "Local Cognito-style signup simulated.",
+    });
+  }
+
   const attributes = [
     new CognitoUserAttribute({
       Name: "email",
@@ -19,7 +41,7 @@ export function signUp(email: string, password: string) {
   ];
 
   return new Promise((resolve, reject) => {
-    userPool.signUp(email, password, attributes, [], (err, result) => {
+    getUserPool().signUp(email, password, attributes, [], (err, result) => {
       if (err) reject(err);
       else resolve(result);
     });
@@ -27,9 +49,15 @@ export function signUp(email: string, password: string) {
 }
 
 export function confirmSignUp(email: string, code: string) {
+  if (!hasCognitoConfig()) {
+    return Promise.resolve(
+      `Local confirmation accepted for ${email} with code ${code || "demo"}.`
+    );
+  }
+
   const user = new CognitoUser({
     Username: email,
-    Pool: userPool,
+    Pool: getUserPool(),
   });
 
   return new Promise((resolve, reject) => {
@@ -41,9 +69,20 @@ export function confirmSignUp(email: string, code: string) {
 }
 
 export function signIn(email: string, password: string) {
+  if (!hasCognitoConfig()) {
+    const payload = {
+      sub: `local-cognito-${email || "demo-user"}`,
+      email: email || "demo@flowintel.local",
+      auth_mode: "local-cognito-simulation",
+      issued_at: new Date().toISOString(),
+    };
+
+    return Promise.resolve(`local.${btoa(JSON.stringify(payload))}.signature`);
+  }
+
   const user = new CognitoUser({
     Username: email,
-    Pool: userPool,
+    Pool: getUserPool(),
   });
 
   const authDetails = new AuthenticationDetails({

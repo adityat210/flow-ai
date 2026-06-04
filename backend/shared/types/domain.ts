@@ -55,7 +55,7 @@ export interface Task{
     assigneeId?: string;
     createdBy: string;
     priority: TaskPriority;
-    status: TaskPriority;
+    status: TaskStatus;
     position: number;
     createdAt: string;
     updatedAt: string;
@@ -67,4 +67,30 @@ export interface Comment {
     authorId: string;
     body: string;
     createdAt: string;
+}
+
+export interface ReviewMetadata {
+    reviewId: string;
+    taskId: string;
+    reviewerId: string;
+    status: "needs-review" | "approved" | "changes-requested";
+    checklist: string[];
+    updatedAt: string;
+}
+
+export interface ActivityLog {
+    activityId: string;
+    boardId: string;
+    taskId: string;
+    userId: string;
+    action: string;
+    createdAt: string;
+}
+
+export interface SmartTag {
+    tagId: string;
+    taskId: string;
+    tag: string;
+    confidence: number;
+    reason: string;
 }

@@ -1,4 +1,13 @@
 {
+  "scripts": {
+    "seed": "node --import tsx scripts/seed-demo-data.ts",
+    "demo": "node --import tsx scripts/demo.ts",
+    "evaluate": "node --import tsx scripts/evaluate-retrieval.ts",
+    "metrics": "node --import tsx scripts/generate-metrics.ts",
+    "verify": "node --import tsx scripts/verify-project-capabilities.ts",
+    "test": "node --import tsx scripts/tests/flowintel.test.ts",
+    "typecheck": "npm run typecheck --prefix backend && npm run build --prefix frontend"
+  },
   "dependencies": {
     "@aws-sdk/client-apigatewaymanagementapi": "^3.1037.0",
     "@aws-sdk/client-dynamodb": "^3.1037.0",

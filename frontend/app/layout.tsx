@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "TaskSync AI",
-  description: "Serverless, AI-equipped task management application.",
+  title: "FlowIntel",
+  description: "AI workflow balance for teams, assignments, and goals.",
 };
 
 /**

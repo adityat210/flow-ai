@@ -1,0 +1,38 @@
+{
+  "core_entities": 9,
+  "api_routes": 12,
+  "seeded_records": 769,
+  "shared_workspaces": 3,
+  "boards": 5,
+  "lists": 25,
+  "tasks": 120,
+  "comments": 60,
+  "dynamodb_access_patterns": 8,
+  "semantic_coverage_multiplier": 35,
+  "simulated_client_sessions": 5,
+  "request_logs": 60,
+  "average_latency_ms": 128.5,
+  "p95_latency_ms": 204,
+  "max_latency_ms": 216,
+  "routes_measured": 12,
+  "ai_workflow_average_latency_ms": 51.42,
+  "unit_integration_api_tests": 24,
+  "workflow_features": [
+    "semantic_search",
+    "duplicate_detection",
+    "related_task_discovery",
+    "smart_tagging",
+    "review_metadata",
+    "task_movement"
+  ],
+  "frontend_views": [
+    "workspace_setup",
+    "board_kanban",
+    "task_search",
+    "duplicate_suggestions",
+    "smart_tags",
+    "comments",
+    "operational_review"
+  ],
+  "project_capabilities_supported": true
+}

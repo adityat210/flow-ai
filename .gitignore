@@ -24,9 +24,11 @@ venv/
 .env.production.local
 
 # aws
+.aws-sam/
 .cdktf.out/
 .serverless/
 *.tsbuildinfo
+*.pkg
 
 
 .vscode/

@@ -346,6 +346,12 @@ Resources:
                 - execute-api:ManageConnections
               Resource: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${RealtimeApi}/Prod/POST/@connections/*"
       Events:
+        ListBoardTasks:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServerlessRestApi
+            Path: /boards/{boardId}/tasks
+            Method: GET
         CreateTask:
           Type: Api
           Properties:
@@ -380,6 +386,76 @@ Resources:
             RestApiId: !Ref ServerlessRestApi
             Path: /tasks/analyze
             Method: POST
+
+  ListsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../backend
+      Handler: dist/functions/lists/handler.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TaskSyncTable
+      Events:
+        ListBoardLists:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServerlessRestApi
+            Path: /boards/{boardId}/lists
+            Method: GET
+        CreateBoardList:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServerlessRestApi
+            Path: /boards/{boardId}/lists
+            Method: POST
+
+  ReviewFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../backend
+      Handler: dist/functions/review/handler.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TaskSyncTable
+      Events:
+        ListReviewMetadata:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServerlessRestApi
+            Path: /tasks/{taskId}/review-metadata
+            Method: GET
+        CreateReviewMetadata:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServerlessRestApi
+            Path: /tasks/{taskId}/review-metadata
+            Method: POST
+
+  AiWorkflowFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../backend
+      Handler: dist/functions/ai/handler.handler
+      Events:
+        AiWorkflowAction:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServerlessRestApi
+            Path: /tasks/{action}
+            Method: POST
+
+  MetricsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../backend
+      Handler: dist/functions/metrics/handler.handler
+      Events:
+        GetMetrics:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ServerlessRestApi
+            Path: /metrics
+            Method: GET
 
 Outputs:
   ApiUrl:

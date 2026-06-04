@@ -1,0 +1,167 @@
+{
+  "scenarios": [
+    {
+      "query": "users cannot access shared space after invite",
+      "topic": "auth",
+      "expected": "auth",
+      "id": "scenario-1-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "users cannot access shared space after invite workflow",
+      "topic": "auth",
+      "expected": "auth",
+      "id": "scenario-1-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "find cards about fuzzy matching backlog items",
+      "topic": "semantic-search",
+      "expected": "semantic-search",
+      "id": "scenario-2-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 4
+    },
+    {
+      "query": "find cards about fuzzy matching backlog items review",
+      "topic": "semantic-search",
+      "expected": "semantic-search",
+      "id": "scenario-2-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "repeated work request from product review",
+      "topic": "duplicates",
+      "expected": "duplicates",
+      "id": "scenario-3-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 5
+    },
+    {
+      "query": "repeated work request from product review workflow",
+      "topic": "duplicates",
+      "expected": "duplicates",
+      "id": "scenario-3-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 5
+    },
+    {
+      "query": "measure slow lambda endpoint behavior",
+      "topic": "observability",
+      "expected": "observability",
+      "id": "scenario-4-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 1
+    },
+    {
+      "query": "measure slow lambda endpoint behavior review",
+      "topic": "observability",
+      "expected": "observability",
+      "id": "scenario-4-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "show cards moving between columns",
+      "topic": "frontend",
+      "expected": "frontend",
+      "id": "scenario-5-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 6
+    },
+    {
+      "query": "show cards moving between columns workflow",
+      "topic": "frontend",
+      "expected": "frontend",
+      "id": "scenario-5-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 4
+    },
+    {
+      "query": "lookup items by partition and sort keys",
+      "topic": "data-model",
+      "expected": "data-model",
+      "id": "scenario-6-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "lookup items by partition and sort keys review",
+      "topic": "data-model",
+      "expected": "data-model",
+      "id": "scenario-6-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "prove routes work in automation",
+      "topic": "testing",
+      "expected": "testing",
+      "id": "scenario-7-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "prove routes work in automation workflow",
+      "topic": "testing",
+      "expected": "testing",
+      "id": "scenario-7-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "discover similar tasks across boards",
+      "topic": "semantic-search",
+      "expected": "semantic-search",
+      "id": "scenario-8-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "discover similar tasks across boards review",
+      "topic": "semantic-search",
+      "expected": "semantic-search",
+      "id": "scenario-8-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "summarize unresolved review notes",
+      "topic": "duplicates",
+      "expected": "duplicates",
+      "id": "scenario-9-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 5
+    },
+    {
+      "query": "summarize unresolved review notes workflow",
+      "topic": "duplicates",
+      "expected": "duplicates",
+      "id": "scenario-9-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 5
+    },
+    {
+      "query": "track API response time locally",
+      "topic": "observability",
+      "expected": "observability",
+      "id": "scenario-10-a",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    },
+    {
+      "query": "track API response time locally review",
+      "topic": "observability",
+      "expected": "observability",
+      "id": "scenario-10-b",
+      "keyword_baseline_matches": 0,
+      "semantic_matches": 0
+    }
+  ],
+  "keyword_baseline_matches": 0,
+  "semantic_matches": 35,
+  "improvement_multiplier": 35
+}
