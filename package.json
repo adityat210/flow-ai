@@ -1,4 +1,7 @@
 {
+  "name": "flowintel",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "seed": "node --import tsx scripts/seed-demo-data.ts",
     "demo": "node --import tsx scripts/demo.ts",
@@ -15,6 +18,6 @@
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
-    "tsx": "^4.21.0"
+    "tsx": "^4.22.4"
   }
 }

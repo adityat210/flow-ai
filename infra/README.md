@@ -1,5 +1,6 @@
 # Infrastructure
-Notes and deployment-related config for AWS based TaskSync architecture
+
+Notes and deployment-related config for the AWS-based FlowIntel architecture.
 
 Services:
 - S3

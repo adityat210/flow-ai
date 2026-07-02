@@ -1,6 +1,23 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
-Description: TaskSync AWS serverless backend
+Description: FlowIntel AWS serverless backend
+
+Parameters:
+  UpstashRedisRestUrl:
+    Type: String
+    Default: ""
+    NoEcho: true
+    Description: Optional Upstash Redis REST URL for cache-backed workflow helpers.
+  UpstashRedisRestToken:
+    Type: String
+    Default: ""
+    NoEcho: true
+    Description: Optional Upstash Redis REST token for cache-backed workflow helpers.
+  HuggingFaceApiToken:
+    Type: String
+    Default: ""
+    NoEcho: true
+    Description: Optional Hugging Face token for embedding-backed AI helpers.
 
 Globals:
   Function:
@@ -11,9 +28,9 @@ Globals:
       Variables:
         TABLE_NAME: !Ref TaskSyncTable
         WS_API_ENDPOINT: !Sub "https://${RealtimeApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
-        UPSTASH_REDIS_REST_URL: "https://solid-glowworm-88703.upstash.io"
-        UPSTASH_REDIS_REST_TOKEN: "gQAAAAAAAVp_AAIgcDEwMGY4OWM2NTUyMTc0OTlkYjg2YWFmMWM0MWNiNzA3MA"
-        HUGGINGFACE_API_TOKEN: ""
+        UPSTASH_REDIS_REST_URL: !Ref UpstashRedisRestUrl
+        UPSTASH_REDIS_REST_TOKEN: !Ref UpstashRedisRestToken
+        HUGGINGFACE_API_TOKEN: !Ref HuggingFaceApiToken
 Resources:
   SearchFunction:
     Type: AWS::Serverless::Function
@@ -34,7 +51,7 @@ Resources:
   TaskSyncUserPool:
     Type: AWS::Cognito::UserPool
     Properties:
-      UserPoolName: TaskSyncUserPool
+      UserPoolName: FlowIntelUserPool
       UsernameAttributes:
         - email
       AutoVerifiedAttributes:
@@ -50,7 +67,7 @@ Resources:
   TaskSyncUserPoolClient:
     Type: AWS::Cognito::UserPoolClient
     Properties:
-      ClientName: TaskSyncWebClient
+      ClientName: FlowIntelWebClient
       UserPoolId: !Ref TaskSyncUserPool
       GenerateSecret: false
       ExplicitAuthFlows:
@@ -72,7 +89,7 @@ Resources:
   RealtimeApi:
     Type: AWS::ApiGatewayV2::Api
     Properties:
-      Name: TaskSyncRealtimeApi
+      Name: FlowIntelRealtimeApi
       ProtocolType: WEBSOCKET
       RouteSelectionExpression: "$request.body.action"
 
@@ -183,7 +200,7 @@ Resources:
   TaskSyncTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: TaskSyncTable
+      TableName: FlowIntelTable
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
         - AttributeName: PK

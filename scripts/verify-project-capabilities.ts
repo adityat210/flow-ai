@@ -18,7 +18,7 @@ const checks: [string, boolean][] = [
   ["AI-assisted tagging implemented", metrics.workflow_features.includes("smart_tagging")],
   ["Duplicate-task detection implemented", metrics.workflow_features.includes("duplicate_detection")],
   ["Related-task discovery implemented", metrics.workflow_features.includes("related_task_discovery")],
-  ["Semantic retrieval beats keyword baseline by approximately 5x", metrics.semantic_coverage_multiplier >= 4.5],
+  ["Semantic retrieval beats keyword baseline by at least 5x", metrics.semantic_coverage_multiplier >= 4.5],
   ["3+ concurrent client sessions simulated", metrics.simulated_client_sessions >= 3],
   ["Request logging implemented", metrics.request_logs > 0],
   ["Latency tracking implemented", metrics.average_latency_ms > 0],

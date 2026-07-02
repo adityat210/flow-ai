@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   addWorkspaceMember,
   createBoard,
@@ -263,10 +263,32 @@ const demoComments: Record<string, CommentItem[]> = {
   ],
 };
 
+let demoCommentCounter = 0;
+
+function readStoredValue(key: string) {
+  if (typeof window === "undefined") return "";
+  return localStorage.getItem(key) || "";
+}
+
+function createDemoCommentId() {
+  demoCommentCounter += 1;
+  return `comment-demo-local-${demoCommentCounter}`;
+}
+
+function createTimestamp() {
+  return new Date().toISOString();
+}
+
 export default function Home() {
-  const [boardId, setBoardId] = useState("");
-  const [workspaceId, setWorkspaceId] = useState("");
-  const [userId, setUserId] = useState("");
+  const [boardId, setBoardId] = useState(() =>
+    readStoredValue("tasksync-board-id")
+  );
+  const [workspaceId, setWorkspaceId] = useState(() =>
+    readStoredValue("tasksync-workspace-id")
+  );
+  const [userId, setUserId] = useState(() =>
+    readStoredValue("tasksync-user-id")
+  );
   const [members, setMembers] = useState<BoardItem[]>([]);
   const [boardItems, setBoardItems] = useState<BoardItem[]>([]);
   const [taskTitle, setTaskTitle] = useState("");
@@ -279,10 +301,14 @@ export default function Home() {
     {}
   );
 
-  const [authEmail, setAuthEmail] = useState("");
+  const [authEmail, setAuthEmail] = useState(() =>
+    readStoredValue("tasksync-auth-email")
+  );
   const [authPassword, setAuthPassword] = useState("");
   const [confirmCode, setConfirmCode] = useState("");
-  const [authToken, setAuthToken] = useState("");
+  const [authToken, setAuthToken] = useState(() =>
+    readStoredValue("tasksync-auth-token")
+  );
   const [authMessage, setAuthMessage] = useState("");
 
   const [realtimeStatus, setRealtimeStatus] = useState("Disconnected");
@@ -295,7 +321,7 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState<BoardItem[]>([]);
   const [searchCacheHit, setSearchCacheHit] = useState<boolean | null>(null);
 
-  const refreshCommentsForTasks = async (tasksToLoad: BoardItem[]) => {
+  const refreshCommentsForTasks = useCallback(async (tasksToLoad: BoardItem[]) => {
     const nextComments: Record<string, CommentItem[]> = {};
 
     await Promise.all(
@@ -307,9 +333,9 @@ export default function Home() {
     );
 
     setCommentsByTask(nextComments);
-  };
+  }, []);
 
-  const refreshBoard = async (id: string) => {
+  const refreshBoard = useCallback(async (id: string) => {
     const items = await getBoard(id);
     setBoardItems(items);
 
@@ -318,29 +344,17 @@ export default function Home() {
     );
 
     await refreshCommentsForTasks(loadedTasks);
-  };
+  }, [refreshCommentsForTasks]);
 
   useEffect(() => {
-    const savedWorkspace = localStorage.getItem("tasksync-workspace-id");
-    const savedBoard = localStorage.getItem("tasksync-board-id");
-    const savedUser = localStorage.getItem("tasksync-user-id");
-    const savedToken = localStorage.getItem("tasksync-auth-token");
-    const savedEmail = localStorage.getItem("tasksync-auth-email");
-
-    if (savedToken) setAuthToken(savedToken);
-    if (savedEmail) setAuthEmail(savedEmail);
-    if (savedUser) setUserId(savedUser);
-
-    if (savedWorkspace) {
-      setWorkspaceId(savedWorkspace);
-      getWorkspaceMembers(savedWorkspace).then(setMembers);
+    if (workspaceId) {
+      getWorkspaceMembers(workspaceId).then(setMembers);
     }
 
-    if (savedBoard) {
-      setBoardId(savedBoard);
-      refreshBoard(savedBoard);
+    if (boardId) {
+      Promise.resolve().then(() => refreshBoard(boardId));
     }
-  }, []);
+  }, [boardId, refreshBoard, workspaceId]);
 
   useEffect(() => {
     const wsUrl = process.env.NEXT_PUBLIC_WS_URL;
@@ -381,7 +395,7 @@ export default function Home() {
     return () => {
       socket.close();
     };
-  }, [boardId]);
+  }, [boardId, refreshBoard]);
 
   const handleSignUp = async () => {
     if (!authEmail || !authPassword) return;
@@ -662,11 +676,11 @@ export default function Home() {
 
     if (boardId === "demo-board") {
       const comment = {
-        commentId: `comment-${Date.now()}`,
+        commentId: createDemoCommentId(),
         taskId: task.taskId,
         userId,
         body: commentBody,
-        createdAt: new Date().toISOString(),
+        createdAt: createTimestamp(),
       };
 
       setCommentInputs((prev) => ({
@@ -723,14 +737,19 @@ export default function Home() {
     setSearchCacheHit(null);
   };
 
-  const handleLoadDemoBoard = () => {
+  const handleLoadDemoBoard = useCallback(() => {
     const demoWorkspaceId = "demo-workspace";
     const demoBoardId = "demo-board";
     const demoUserId = userId || "demo-user";
+    const demoEmail = authEmail || "demo@flowintel.local";
+    const demoToken = "local-demo-token";
 
     setWorkspaceId(demoWorkspaceId);
     setBoardId(demoBoardId);
     setUserId(demoUserId);
+    setAuthEmail(demoEmail);
+    setAuthToken(demoToken);
+    setAuthMessage("Loaded local demo mode. AWS backend calls are not required.");
     setMembers([
       {
         PK: "WORKSPACE#demo-workspace",
@@ -771,7 +790,15 @@ export default function Home() {
     localStorage.setItem("tasksync-workspace-id", demoWorkspaceId);
     localStorage.setItem("tasksync-board-id", demoBoardId);
     localStorage.setItem("tasksync-user-id", demoUserId);
-  };
+    localStorage.setItem("tasksync-auth-email", demoEmail);
+    localStorage.setItem("tasksync-auth-token", demoToken);
+  }, [authEmail, userId]);
+
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_API_URL && !boardId) {
+      Promise.resolve().then(handleLoadDemoBoard);
+    }
+  }, [boardId, handleLoadDemoBoard]);
 
   const boardMetadata = boardItems.find((item) => item.SK === "METADATA");
 

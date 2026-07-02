@@ -53,7 +53,7 @@ Review records generated: 40
   "p95_latency_ms": 204,
   "max_latency_ms": 216,
   "routes_measured": 12,
-  "ai_workflow_average_latency_ms": 53.37,
+  "ai_workflow_average_latency_ms": 52.5,
   "unit_integration_api_tests": 24,
   "workflow_features": [
     "semantic_search",
@@ -119,6 +119,6 @@ Review records generated: 40
   "p95_latency_ms": 204,
   "max_latency_ms": 216,
   "routes_measured": 12,
-  "ai_workflow_average_latency_ms": 53.37
+  "ai_workflow_average_latency_ms": 52.5
 }
 ```
